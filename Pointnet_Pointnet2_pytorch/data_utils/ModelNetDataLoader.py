@@ -55,7 +55,7 @@ class ModelNetDataLoader(Dataset):
         self.use_normals = args.use_normals
         self.num_category = args.num_category
 
-        if self.num_category == 10:
+        if self.num_category <= 10:
             self.catfile = os.path.join(self.root, 'modelnet10_shape_names.txt')
         else:
             self.catfile = os.path.join(self.root, 'modelnet40_shape_names.txt')
@@ -64,7 +64,7 @@ class ModelNetDataLoader(Dataset):
         self.classes = dict(zip(self.cat, range(len(self.cat))))
 
         shape_ids = {}
-        if self.num_category == 10:
+        if self.num_category <= 10:
             shape_ids['train'] = [line.rstrip() for line in open(os.path.join(self.root, 'modelnet10_train.txt'))]
             shape_ids['test'] = [line.rstrip() for line in open(os.path.join(self.root, 'modelnet10_test.txt'))]
         else:
